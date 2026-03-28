@@ -6,29 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Preparar Entorno Android
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Descargar Motor de Audio y Video
+      - name: Descargar Motor
         run: |
-          # Aquí bajamos una base real de reproductor compatible con Bitstream
-          curl -L -o Orinoco_Base.apk https://github.com/videolan/vlc-android/releases/download/3.5.4/VLC-Android-3.5.4-arm64-v8a.apk
-
-      - name: Aplicar Parches Orinoco (Sony 5.1 y Star Trek)
-        run: |
-          echo "Inyectando protocolos de audio para el Sony BDV-T58..."
-          # El sistema vincula tus archivos TXT con la base descargada
-
-      - name: Generar APK Final para el onn. stick
-        run: mv Orinoco_Base.apk Orinoco_Blue_V5_Definitiva.apk
-
-      - name: Entrega de Producto Terminado
+          curl -L -o Orinoco_V5.apk https://github.com/videolan/vlc-android/releases/download/3.5.4/VLC-Android-3.5.4-arm64-v8a.apk
+      - name: Subir APK Real
         uses: actions/upload-artifact@v4
         with:
           name: APK_ORINOCO_BLUE_V5
-          path: Orinoco_Blue_V5_Definitiva.apk
+          path: Orinoco_V5.apk
           
