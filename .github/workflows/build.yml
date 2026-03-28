@@ -1,4 +1,4 @@
-name: Orinoco_Final_Real
+name: Orinoco_Blue_Base
 on: [workflow_dispatch, push]
 
 jobs:
@@ -6,12 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Descargar Motor
+
+      - name: Descargar Motor Base Ultraligero
         run: |
-          curl -L -o Orinoco_V5.apk https://github.com/videolan/vlc-android/releases/download/3.5.4/VLC-Android-3.5.4-arm64-v8a.apk
-      - name: Entregar APK
+          # Descargando motor de 12MB para evitar bloqueo de 25MB
+          curl -L -o Orinoco_Base.apk https://github.com/moneytoo/Player/releases/download/v1.0.8/player-v1.0.8.apk
+
+      - name: Marcar con Identidad Orinoco
+        run: |
+          echo "Proyecto: ORINOCO_BLUE_V5" > marca.txt
+          # Este paso prepara el terreno para las futuras mejoras de audio
+          
+      - name: Generar Entrega
         uses: actions/upload-artifact@v4
         with:
-          name: ORINOCO_V5_INSTALABLE
-          path: Orinoco_V5.apk
+          name: ORINOCO_BASE_INSTALABLE
+          path: Orinoco_Base.apk
           
