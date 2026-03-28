@@ -1,1 +1,13 @@
+name: Orinoco_Build_Final
+on: [push, workflow_dispatch]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Procesar Audio Sony 5.1
+        run: |
+          echo "Sincronizando parametros de audio para Sony BDV-T58..."
+          ls -R
+          
